@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Move, Resize, and Change Color Button</title>
+    <style>
+        #moveButton {
+            position: absolute;
+            transition: all 0.3s; /* Add a smooth transition effect for resizing and color change */
+        }
+    </style>
+</head>
+<body>
+    <button id="moveButton">Move Me</button>
+
+    <script>
+        const button = document.getElementById('moveButton');
+        
+        button.addEventListener('click', () => {
+            const screenWidth = window.innerWidth - button.offsetWidth;
+            const screenHeight = window.innerHeight - button.offsetHeight;
+            
+            const randomX = Math.random() * screenWidth;
+            const randomY = Math.random() * screenHeight;
+            
+            const newSize = Math.floor(Math.random() * 100) + 50; // Generate a random size between 50 and 150 pixels
+            
+            const randomColor = getRandomColor(); // Function to generate a random color
+            
+            button.style.left = randomX + 'px';
+            button.style.top = randomY + 'px';
+            button.style.width = newSize + 'px';
+            button.style.height = newSize + 'px';
+            button.style.backgroundColor = randomColor;
+        });
+
+        // Function to generate a random color
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    </script>
+</body>
+</html>
